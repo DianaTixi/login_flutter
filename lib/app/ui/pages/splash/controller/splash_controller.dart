@@ -25,7 +25,7 @@ class SplashController extends SimpleNotifier {
     if (accessToken != null) {
       final menu = await _account.menu;
       if (menu != null) {
-        _sessionController.setMenu(menu);
+        //_sessionController.setMenu(menu);
         _routeName = Routes.HOME;
       } else {
         _routeName = Routes.LOGIN;

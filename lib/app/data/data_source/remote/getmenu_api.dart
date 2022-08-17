@@ -10,7 +10,7 @@ class MenuApi {
   final AuthenticationClient _authClient;
   MenuApi(this._http, this._authClient);
 
-  Future<List<Menu>> getMenu() async {
+  Future<List<Menu?>> getMenu(List<Menu> menus) async {
     print("Obtener lista Menu");
     final accessToken = await _authClient.accessToken;
     print("Pasa TOKEN ${accessToken}");
