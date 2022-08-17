@@ -13,11 +13,13 @@ class SplashController extends SimpleNotifier {
   SplashController(this._sessionController) {
     _init();
   }
+
   final _auth = Get.find<AutheticationRepository>();
   final MenuRepository _account = Get.find();
   final SessionController _sessionController;
 
   String? _routeName;
+
   String? get routeName => _routeName;
 
   Future<void> _init() async {
