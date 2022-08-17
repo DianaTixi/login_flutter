@@ -23,13 +23,14 @@ class SplashController extends SimpleNotifier {
   Future<void> _init() async {
     final accessToken = await _auth.accessToken;
     if (accessToken != null) {
-      final menu = await _account.menu;
-      if (menu != null) {
-        _sessionController.setMenu(menu);
-        _routeName = Routes.HOME;
-      } else {
-        _routeName = Routes.LOGIN;
-      }
+      //final menu = await _account.menu;
+      // if (menu != null) {
+      //   _sessionController.setMenu(menu);
+      //   _routeName = Routes.HOME;
+      // } else {
+      //   _routeName = Routes.LOGIN;
+      // }
+      _routeName = Routes.HOME;
     } else {
       _routeName = Routes.LOGIN;
     }

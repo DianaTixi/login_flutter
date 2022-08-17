@@ -8,6 +8,9 @@ class MenuRepositoryImpl implements MenuRepository {
   MenuRepositoryImpl(this._api);
 
   @override
-  // TODO: implement menu
-  Future<Menu?> get menu => throw UnimplementedError();
+  Future<List<Menu>> getMenus() => _api.getMenu();
+
+
+
+
 }
