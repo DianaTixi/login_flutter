@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ejemplo/app/data/data_source/remote/local/authentication_client.dart';
 import 'package:ejemplo/app/domain/models/submenu.dart';
 import 'package:tuple/tuple.dart';
@@ -10,16 +12,19 @@ class MenuApi {
   final AuthenticationClient _authClient;
   MenuApi(this._http, this._authClient);
 
-  Future<List<Menu?>> getMenu(List<Menu> menus) async {
+  Future<List<Menu?>> getMenu() async {
     print("Obtener lista Menu");
     final accessToken = await _authClient.accessToken;
     print("Pasa TOKEN ${accessToken}");
-    final result = await _http.request<List<Menu>>(
+    final result = await _http.request<List<Menu?>>(
       'api/auth/menu/1',
       headers: {
         'x-token': accessToken ?? "",
       },
       parser: (data) {
+        final parsedJson = jsonDecode(data);
+        print("Data ${parsedJson} ");
+
         print("RESPONSE ${data['menu']}");
         List<Menu> menus = [];
         for (var i = 0; i < data.len; i++) {
