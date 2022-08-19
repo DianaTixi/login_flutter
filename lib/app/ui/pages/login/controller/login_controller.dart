@@ -31,12 +31,13 @@ class LoginController extends SimpleNotifier {
     print(_contrasena);
     final response = await _auth.login(_alias, _contrasena);
     if (response == LoginResponse.ok) {
-      final menu = await _account.menu;
-      if (menu != null) {
-        _sessionController.setMenu(menu);
-      } else {
-        return LoginResponse.unknowError;
-      }
+      return LoginResponse.ok;
+      // final menu = await _account.menu;
+      // if (menu != null) {
+      //   _sessionController.setMenu(menu);
+      // } else {
+      //   return LoginResponse.unknowError;
+      // }
     }
     return response;
   }

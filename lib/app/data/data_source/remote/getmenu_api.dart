@@ -10,30 +10,31 @@ import '../../helpers/http.dart';
 class MenuApi {
   final Http _http;
   final AuthenticationClient _authClient;
+
   MenuApi(this._http, this._authClient);
 
-  Future<List<Menu?>> getMenu() async {
-    print("Obtener lista Menu");
+  Future<List<Menu>> getMenu() async {
     final accessToken = await _authClient.accessToken;
-    print("Pasa TOKEN ${accessToken}");
-    final result = await _http.request<List<Menu?>>(
+    final result = await _http.request<List<Menu>>(
       'api/auth/menu/1',
       headers: {
         'x-token': accessToken ?? "",
       },
       parser: (data) {
-        final parsedJson = jsonDecode(data);
-        print("Data ${parsedJson} ");
-
-        print("RESPONSE ${data['menu']}");
+        //print("RESPONSE ${data['menu']}");
         List<Menu> menus = [];
-        for (var i = 0; i < data.len; i++) {
+        for (var i = 0; i < data.length; i++) {
+          //print(data['menu'][i]);
           menus.add(Menu.fromJson(data['menu'][i]));
         }
+        menus.forEach((element) {
+          print('sdfsdfsdfsdfsdfsdf');
+          print(element.toJson());
+        });
         return menus;
       },
     );
-    print("Resultado Metodo Get:  ${result.data}");
+    //print("Resultado Metodo Get:  ${result.data}");
     //return result.data;
     return [];
   }

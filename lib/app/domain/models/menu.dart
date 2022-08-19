@@ -56,11 +56,7 @@ class Menu {
       cmeId: json["cme_id"],
       cmeNombre: json["cme_nombre"],
       dmeOrden: json["dme_orden"],
-      hijos: []
-      // hijos: json["hijos"] != null
-      //     ? List<Submenu>.from(json["hijos"].map((x) => Submenu.fromJson(x)))
-      //     : [],
-      );
+      hijos: json['hijos'] != null ? List<Submenu>.from(json["hijos"].map((x) => Submenu.fromJson(x))) : []);
 
   Map<String, dynamic> toJson() => {
         "dme_id": dmeId,

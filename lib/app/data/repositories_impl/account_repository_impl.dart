@@ -11,7 +11,5 @@ class MenuRepositoryImpl implements MenuRepository {
   MenuRepositoryImpl(this._api);
 
   @override
-  Future<Menu?> get menu async {
-    //final result = await _api.getMenu(menus);
-  }
+  Future<List<Menu>> getMenus() => _api.getMenu();
 }

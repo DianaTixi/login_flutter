@@ -13,7 +13,6 @@ Future<void> sendLoginFomr(BuildContext context) async {
     ProgressDialog.show(context);
     final response = await controller.submit();
     print("response ${response}");
-
     router.pop();
     if (response == LoginResponse.ok) {
       router.pushReplacementNamed(Routes.HOME);

@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       key: router.appKey,
       title: 'Hello world',
       navigatorKey: router.navigatorKey,

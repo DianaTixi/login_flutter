@@ -3,6 +3,7 @@ import 'package:ejemplo/app/ui/pages/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/ui.dart';
 
+import '../../routes/routes.dart';
 import 'controller/home_provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,13 +19,21 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Consumer(builder: (_, ref, __) {
-              final controller = ref.watch(sessionProvider);
-              return Text(" ${controller.menu?.toJson()}");
-            })
+            Text("sfsdf"),
+            TextButton(onPressed: () async {
+              await homeProvider.read.getMenus();
+            }, child: Text("Menus"))
+            // Consumer(builder: (_, ref, __) {
+            //   final controller = ref.watch(sessionProvider);
+            //   return Text(" ${controller.menu?.toJson()}");
+            // })
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        router.pushReplacementNamed(Routes.LOGIN);
+      },
+      child: Icon(Icons.logout),),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
