@@ -1,10 +1,13 @@
 import 'package:ejemplo/app/data/data_source/remote/getmenu_api.dart';
 import 'package:ejemplo/app/data/data_source/remote/authentication_api.dart';
+import 'package:ejemplo/app/data/data_source/remote/getreglas_api.dart';
 import 'package:ejemplo/app/data/data_source/remote/local/authentication_client.dart';
 import 'package:ejemplo/app/data/helpers/http.dart';
 import 'package:ejemplo/app/data/repositories_impl/account_repository_impl.dart';
 import 'package:ejemplo/app/data/repositories_impl/authentication_repository_impl.dart';
+import 'package:ejemplo/app/data/repositories_impl/regla_repository_impl.dart';
 import 'package:ejemplo/app/domain/repositories/authentication_repository/authentication_repository.dart';
+import 'package:ejemplo/app/domain/repositories/regla_repository.dart';
 import 'package:flutter_meedu/meedu.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -25,5 +28,9 @@ Future<void> injectDependencies() async {
 
   Get.lazyPut<MenuRepository>(
     () => MenuRepositoryImpl(MenuApi(http, authClient)),
+  );
+
+  Get.lazyPut<ReglaRepository>(
+    () => ReglaRepositoryImpl(ReglaApi(http, authClient)),
   );
 }

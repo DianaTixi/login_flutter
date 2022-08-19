@@ -27,27 +27,6 @@ class Menu {
   int dmeOrden;
   List<Submenu> hijos;
 
-  Menu copyWith({
-    int? dmeId,
-    String? dmeTexto,
-    int? prgId,
-    String? prgUrlPanel,
-    int? cmeId,
-    String? cmeNombre,
-    int? dmeOrden,
-    List<Submenu>? hijos,
-  }) =>
-      Menu(
-        dmeId: dmeId ?? this.dmeId,
-        dmeTexto: dmeTexto ?? this.dmeTexto,
-        prgId: prgId ?? this.prgId,
-        prgUrlPanel: prgUrlPanel ?? this.prgUrlPanel,
-        cmeId: cmeId ?? this.cmeId,
-        cmeNombre: cmeNombre ?? this.cmeNombre,
-        dmeOrden: dmeOrden ?? this.dmeOrden,
-        hijos: hijos ?? this.hijos,
-      );
-
   factory Menu.fromJson(Map<String, dynamic> json) => Menu(
       dmeId: json["dme_id"],
       dmeTexto: json["dme_texto"],
@@ -56,7 +35,9 @@ class Menu {
       cmeId: json["cme_id"],
       cmeNombre: json["cme_nombre"],
       dmeOrden: json["dme_orden"],
-      hijos: json['hijos'] != null ? List<Submenu>.from(json["hijos"].map((x) => Submenu.fromJson(x))) : []);
+      hijos: json['hijos'] != null
+          ? List<Submenu>.from(json["hijos"].map((x) => Submenu.fromJson(x)))
+          : []);
 
   Map<String, dynamic> toJson() => {
         "dme_id": dmeId,

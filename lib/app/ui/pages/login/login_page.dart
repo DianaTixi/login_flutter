@@ -1,4 +1,7 @@
-import 'package:ejemplo/app/ui/pages/login/utils/send_login.dart';
+import 'package:ejemplo/app/domain/response/login_response.dart';
+import 'package:ejemplo/app/ui/global_widgets/dialogs/dialogs.dart';
+import 'package:ejemplo/app/ui/global_widgets/dialogs/progress_dialogs.dart';
+import 'package:ejemplo/app/ui/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meedu/ui.dart';
 import 'controller/login_provider.dart';
@@ -52,7 +55,20 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 30),
                     ElevatedButton(
-                      onPressed: () => sendLoginFomr(context),
+                      onPressed: () {
+                        ProgressDialog.show(context);
+                        final response = controller.sendLoginForm();
+                        router.pop();
+                        if (response == LoginResponse.ok) {
+                          router.pushReplacementNamed(Routes.HOME);
+                        } else {
+                          Dialogs.alert(
+                            context,
+                            title: response.toString(),
+                          );
+                          router.pushReplacementNamed(Routes.LOGIN);
+                        }
+                      },
                       child: Text("Iniciar Sesion"),
                     ),
                   ],

@@ -14,6 +14,7 @@ class MenuApi {
   MenuApi(this._http, this._authClient);
 
   Future<List<Menu>> getMenu() async {
+    List<Menu> menus = [];
     final accessToken = await _authClient.accessToken;
     final result = await _http.request<List<Menu>>(
       'api/auth/menu/1',
@@ -22,20 +23,17 @@ class MenuApi {
       },
       parser: (data) {
         //print("RESPONSE ${data['menu']}");
-        List<Menu> menus = [];
         for (var i = 0; i < data.length; i++) {
-          //print(data['menu'][i]);
+          //print(" Data MENU ${i} ,  ${data['menu'][i]}");
           menus.add(Menu.fromJson(data['menu'][i]));
         }
         menus.forEach((element) {
-          print('sdfsdfsdfsdfsdfsdf');
+          //print('elementos');
           print(element.toJson());
         });
         return menus;
       },
     );
-    //print("Resultado Metodo Get:  ${result.data}");
-    //return result.data;
-    return [];
+    return menus;
   }
 }
